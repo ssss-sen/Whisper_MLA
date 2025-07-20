@@ -1,0 +1,2 @@
+python src/mha2mla/inference_mla.py --config_file configs_hf/rope/infer_mla.yaml;
+python src/mha2mla/compute-wer.py output/2norm_result/gt.txt output/2norm_result/pred.txt >output/2norm_result/score.txt

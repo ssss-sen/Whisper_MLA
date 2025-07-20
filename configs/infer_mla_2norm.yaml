@@ -1,0 +1,20 @@
+# TrainingArguments
+per_device_eval_batch_size: 8
+output_dir: "output/2norm_result"
+
+# ModelArguments
+model_name_or_path: "output/2norm_model/"
+partial_rope_version: "2-norm" # 'high'/'low'/'uniform'/'2-norm'
+rope_dim_for_mla: 48
+uniform_start_point: 0 # optional only for 'uniform'
+# num_query_heads_div_key_heads: 1
+qk_tensor_path: "output/mha2mlaqk_tensor_hf_test.pth"
+svd_init_method: joint # 'split'/'joint'
+low_rank: 8
+is_baseline: false
+is_gqa2mha2mla: false
+tokenizer_name_or_path: "output/2norm_model/"
+
+# DataArguments
+test_ann_path: "data/test.json"
+whisper_path: "output/2norm_model/"
