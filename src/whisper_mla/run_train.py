@@ -180,7 +180,7 @@ def get_dataloader(dataset, config):
         pin_memory=True,
         sampler=None,
         shuffle=True,
-        collate_fn=dataset.collater,
+        collate_fn=dataset.infer_collater,
         drop_last=True,
     )
     loader = IterLoader(loader, use_distributed=False)
