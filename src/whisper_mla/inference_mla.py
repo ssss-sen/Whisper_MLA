@@ -61,7 +61,7 @@ def main():
     test_dataset = Whisper_Dataset(dataset_args.test_ann_path, dataset_args.whisper_path)
     model = mla_model
     model.proj_out = make_linear_from_emb(model.model.decoder.embed_tokens)
-    data_loader = get_dataloader(test_dataset, test_args, is_train=False, use_distributed=False)
+    data_loader = get_dataloader(test_dataset, test_args, is_train = False)
 
     model.eval()
     model.to("cuda")

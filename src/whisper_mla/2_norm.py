@@ -61,7 +61,7 @@ def main():
         int(os.getenv("WORLD_SIZE", 1)) == 1
     ), "Only support single process." 
     
-    data_loader = get_dataloader(train_dataset, training_args)
+    data_loader = get_dataloader(train_dataset, training_args, is_train = True)
 
     num = args.sample_size
     model.eval()

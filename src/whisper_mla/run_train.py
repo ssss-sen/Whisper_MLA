@@ -172,18 +172,30 @@ def load_optimizer_scheduler(model, training_args, model_args):
         )
     return optimizer, lr_scheduler
     
-def get_dataloader(dataset, config):
-    loader = DataLoader(
-        dataset,
-        batch_size=config.per_device_train_batch_size,
-        num_workers=1,
-        pin_memory=True,
-        sampler=None,
-        shuffle=True,
-        collate_fn=dataset.infer_collater,
-        drop_last=True,
-    )
-    loader = IterLoader(loader, use_distributed=False)
+def get_dataloader(dataset, config, is_train=True):
+    if is_train:
+        loader = DataLoader(
+            dataset,
+            batch_size=config.per_device_train_batch_size,
+            num_workers=1,
+            pin_memory=True,
+            sampler=None,
+            shuffle=True,
+            collate_fn=dataset.collater,
+            drop_last=is_train,
+        )
+        loader = IterLoader(loader, use_distributed=False)
+    else:
+        loader = DataLoader(
+            dataset,
+            batch_size=config.per_device_eval_batch_size,
+            num_workers=1,
+            pin_memory=True,
+            sampler=None,
+            shuffle=False,
+            collate_fn=dataset.infer_collater,
+            drop_last=is_train,
+        )
 
     return loader
     
