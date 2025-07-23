@@ -1,0 +1,2 @@
+python src/whisper_mla/inference_mla.py --config_file configs/infer_mla_2norm.yaml;
+python src/whisper_mla/compute-wer.py output/2norm_result/gt.txt output/2norm_result/pred.txt >output/2norm_result/score.txt

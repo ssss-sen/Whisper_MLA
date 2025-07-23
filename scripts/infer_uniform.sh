@@ -1,0 +1,2 @@
+python src/whisper_mla/inference_mla.py --config_file configs/infer_mla_uniform.yaml;
+python src/whisper_mla/compute-wer.py output/uniform_result/gt.txt output/uniform_result/pred.txt >output/uniform_result/score.txt
