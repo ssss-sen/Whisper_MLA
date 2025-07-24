@@ -96,7 +96,7 @@ class Whisper_Dataset(Dataset):
         if len(audio) < sr: # pad audio to at least 1s
             sil = np.zeros(sr - len(audio), dtype=float)
             audio = np.concatenate((audio, sil), axis=0)
-        audio = audio[: sr * 300] # truncate audio to at most 30s
+        audio = audio[: sr * 30] # truncate audio to at most 30s
 
         spectrogram = self.wav_processor(audio, sampling_rate=sr, return_tensors="pt")["input_features"].squeeze()
         text = ann["text"]

@@ -58,6 +58,10 @@ def main():
     mha_model = WhisperForConditionalGeneration.from_pretrained(name, config=config)
     mla_model, q_idx, k_idx = patch_model(mha_model, config, mha2mla_args)
     mha2mla_mla_whisper()
+    signle_weight_file = os.path.join(name, "model.safetensors")
+    if os.path.exists(signle_weight_file):
+        state_dict = load_file(signle_weight_file)
+        mla_model.load_state_dict(state_dict, strict=False)
     test_dataset = Whisper_Dataset(dataset_args.test_ann_path, dataset_args.whisper_path)
     model = mla_model
     model.proj_out = make_linear_from_emb(model.model.decoder.embed_tokens)
