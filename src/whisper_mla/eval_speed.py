@@ -9,7 +9,7 @@ from transformers import AutoTokenizer, GenerationConfig, LogitsProcessor, Logit
 from transformers import WhisperTokenizer, WhisperFeatureExtractor, WhisperConfig
 from modeling_whisper import WhisperModel, WhisperForConditionalGeneration
 from patching_model_load import patch_model
-from patching_whisper import mha2mla_whisper, mha2mla_mla_whisper
+from patching_whisper import mha2mla_mla_whisper
 from safetensors.torch import load_file
 from run_train import (
     ModelArguments,
