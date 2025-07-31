@@ -89,16 +89,7 @@ def main():
         for _,batch in enumerate(data_loader):
             batch = prepare_sample(batch, cuda_enabled=True)
             spectrogram = batch["input_features"]
-            text = [t for t in batch["text"]]
-            to_regress_tokens = tokenizer(
-                text,
-                return_tensors="pt",
-                padding="longest",
-                truncation=True,
-                max_length=2048,
-                add_special_tokens=False
-            ).to(spectrogram.device)
-            text_tokens = to_regress_tokens.input_ids
+            text_tokens = batch["labels"]
             model(input_features = spectrogram, labels = text_tokens)
             num -= text_tokens.shape[0]
             p_bar.update(text_tokens.shape[0])
