@@ -1,1 +1,0 @@
-python src/whisper_mla/eval_speed.py --model_path output/2norm_model --batch_size 64 --use_mla --mha2mla_config_path configs/infer_mla_2norm.yaml

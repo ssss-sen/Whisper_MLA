@@ -58,18 +58,4 @@ If you want to test the ASR results of Whisper_MLA on the LibriSpeech-test-other
 
 ```sh
 bash scripts/infer_mla.sh
-```
-
-## GPU Memory Usage Evaluation During Inference
-
-For the gpu memory usage evaluation during inference, you can run the following command:
-
-```sh
-bash scripts/eval_speed.sh
-```
-If you want to compare with the Whisper model of the MHA architecture, you can run the following command to test the gpu memory usage of MHA.
-
-```sh
-bash scripts/eval_speed_mha.sh
-```
-
+``

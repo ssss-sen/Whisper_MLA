@@ -1,1 +1,0 @@
-python src/whisper_mla/eval_speed.py --model_path path_to_whisper_model --batch_size 64
