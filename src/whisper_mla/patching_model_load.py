@@ -38,7 +38,6 @@ def patch_model(model, model_args, mha2mla_args):
         low_rank: The rank for the low-rank approximation of v_proj
     """
     q_masks, k_masks = partial_rope_mask(model_args, mha2mla_args)
-    print(k_masks.size())
 
     n_k_head, n_head = 1, model_args.encoder_attention_heads
     if hasattr(model_args, "head_dim"):
@@ -51,6 +50,7 @@ def patch_model(model, model_args, mha2mla_args):
     for name,layer in model.named_modules():
         # 1. Reorder q_proj
         # Get original weights and biases if biases exist
+        #if not (isinstance(layer, WhisperAttention) and "decoder" in name and "self_attn" in name):
         if not isinstance(layer, WhisperAttention):
             continue
         q_weight = layer.q_proj.weight
@@ -97,8 +97,10 @@ def patch_model(model, model_args, mha2mla_args):
 
         # 3. Setup low-rank kv_proj
         kv_proj = svd_low_rank_approx(
-            k_c_weight=k_weight[k_c_indices],
-            k_c_bias=k_bias[k_c_indices] if k_bias is not None else None,
+            #k_c_weight=k_weight[k_c_indices],
+            #k_c_bias=k_bias[k_c_indices] if k_bias is not None else None,
+            k_c_weight=k_weight,
+            k_c_bias=k_bias if k_bias is not None else None,
             v_weight=layer.v_proj.weight,
             v_bias=getattr(layer.v_proj, "bias", None),
             d_kv_mid=mha2mla_args.low_rank * model_args.num_key_value_heads,
@@ -109,6 +111,7 @@ def patch_model(model, model_args, mha2mla_args):
         # 4. Delete original k_proj and v_proj
         delattr(layer, "k_proj")
         delattr(layer, "v_proj")
+        delattr(layer, "k_r_proj")
 
         d_q_r = n_head * mha2mla_args.rope_dim_for_mla
         q_idx.append(q_indices[:d_q_r])
