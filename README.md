@@ -15,7 +15,7 @@ Whisper_MLA is a framework for fine-tuning the MHA structure of the Whisper mode
 
 First download the datasets.
 
-- LibriSpeech(train-other-500, test-other-500): https://www.openslr.org/12/
+- LibriSpeech: https://www.openslr.org/12/
 
 ## Environment
 
