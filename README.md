@@ -5,10 +5,7 @@ Whisper_MLA is a framework for fine-tuning the MHA structure of the Whisper mode
 ## News
 
 - [2025.07.20] Released the first version of the Whisper_MLA code, providing usage code for Whisper_MLA fine-tuning and evaluating.
-
-## TO-DO
-
-- [ ] Fine-tune the Whisper model of the MLA architecture using a dataset with long audios. Explore the improvement of long audio recognition capability by the MLA structure.
+- [2026.01.18] Our paper was accepted by ICASSP 2026.
 
 ## Models
 
