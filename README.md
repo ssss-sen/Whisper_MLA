@@ -23,6 +23,9 @@ Install pytorch and other packages.
 
 ```sh
 conda create -n whisper-mla python=3.11
+conda activate whisper-mla
+git clone https://github.com/ssss-sen/Whisper_MLA.git
+cd Whisper_MLA
 pip install torch==2.4.0 torchvision==0.19.0
 pip install -r requirements.txt
 ```
