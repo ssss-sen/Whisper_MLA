@@ -22,7 +22,7 @@ First download the datasets.
 Install pytorch and other packages.
 
 ```sh
-conda create -n whisper-mla python=3.11
+conda create -n whisper-mla python=3.11 -y
 conda activate whisper-mla
 git clone https://github.com/ssss-sen/Whisper_MLA.git
 cd Whisper_MLA
